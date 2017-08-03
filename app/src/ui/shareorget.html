@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css">
+<link href="/ui/style.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js"></script>
+    <title>ShareMyBook</title>
+  </head>
+      <header>
+      <div class="ui inverted black left floated segment">
+      <div class="ui huge header">SHAREMYBOOK.COM</div>
+            <p id="date"></p>
+            <script>
+            document.getElementById("date").innerHTML = Date();
+            </script>
+      </div>
+      <div class="ui inverted black right floated segment">
+        <span>
+          <div class="ui inline dropdown">
+            <div class="text">
+              <img class="ui massive avatar image" src="/ui/dp.png">
+
+            </div>
+            <i class="dropdown icon"></i>
+            <div class="menu">
+              <div class="item" data-value="0"><a href="/profileinfo">View Profile</a></div>
+                         <div class="item" data-value="1"><a href="/logout">Logout</a></div>
+            </div>
+          </div>
+        </span>
+        <script>
+        $('.ui.dropdown')
+        .dropdown()
+        ;
+        </script>
+      </div>
+     </header><br><br>
+      <main>
+      <a href="/bookdetailform"> <button class="ui primary button" id="screen2button1" >
+        I WANT TO SHARE MY BOOK
+        </button></a>
+      <a href="/displaybook.html">  <button class="ui primary button" id="screen2button2">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I WANT TO GET A BOOK&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </button></a>
+      </main>
+
+</html>

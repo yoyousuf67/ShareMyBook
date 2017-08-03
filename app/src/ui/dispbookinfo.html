@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css">
+<link rel="stylesheet" href="/ui/style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js"></script>
+    <title>ShareMyBook</title>
+  </head>
+      <header>
+      <a href="/shareorget"><div class="ui inverted black left floated segment">
+      <div class="ui huge header">SHAREMYBOOK.COM</div>
+            <p id="date"></p>
+            <script>
+            document.getElementById("date").innerHTML = Date();
+            </script>
+      </div></a>
+      <div class="ui inverted black right floated segment">
+        <span>
+          <div class="ui inline dropdown">
+            <div class="text">
+              <img class="ui massive avatar image" src="/ui/dp.png">
+
+            </div>
+            <i class="dropdown icon"></i>
+            <div class="menu">
+              <div class="item" data-value="0"><a href="/profileinfo">View Profile</a></div>
+                         <div class="item" data-value="1"><a href="/logout">Logout</a></div>
+            </div>
+          </div>
+        </span>
+        <script>
+        $('.ui.dropdown')
+        .dropdown()
+        ;
+        </script>
+      </div>
+     </header><br><br>
+      <main>
+        <div class="ui inverted blue top attached tabular menu">
+  <a class="item active" data-tab="first">BOOK INFO</a>
+  <a class="item" data-tab="second">CONTACT INFO</a>
+</div>
+<div class="ui inverted bottom attached tab segment active" data-tab="first" id="detailed">
+  First
+</div>
+<div class="ui inverted bottom attached tab segment" data-tab="second" id="detailing">
+  Second
+</div>
+      </main>
+
+<script>
+$('.menu .item')
+.tab()
+;
+</script>
+<script>
+$(document).ready(function() {
+var request1=new XMLHttpRequest();
+request1.onreadystatechange=function(){
+if(request1.readyState==XMLHttpRequest.DONE){
+if(request1.status==200){
+var dbdetail= request1.responseText;
+console.log(dbdetail);
+var span=document.getElementById('detailed');
+span.innerHTML=dbdetail.toString();
+var request2=new XMLHttpRequest();
+request2.onreadystatechange=function(){
+if(request2.readyState==XMLHttpRequest.DONE){
+if(request2.status==200){
+var baddetail= request2.responseText;
+console.log(baddetail);
+var span=document.getElementById('detailing');
+span.innerHTML=baddetail.toString();
+$('.ui.rating').rating('disable');
+}
+else if (request2.status===403){alert('Error detected');
+}
+else {
+    alert('Something went wrong on server');
+
+}
+}
+};
+console.log('request sent');
+request2.open('GET','/profiledetailfetch',true);
+request2.send(null);
+}
+else if (request1.status===403){alert('Error detected');
+}
+else {
+    alert('Something went wrong on server');
+
+}
+}
+};
+console.log('request sent');
+request1.open('GET','/bookdetailfetch',true);
+request1.send(null);
+})
+</script>
+</html>

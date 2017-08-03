@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css">
+<link href="/ui/style.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js"></script>
+    <title>ShareMyBook</title>
+  </head>
+      <header>
+      <div class="ui inverted black left floated segment">
+      <div class="ui huge header">SHAREMYBOOK.COM</div>
+            <p id="date"></p>
+            <script>
+            document.getElementById("date").innerHTML = Date();
+            </script>
+      </div>
+      <div class="ui inverted black right floated segment">
+              <form class="ui form bro" action="/login" method="post">
+              <div class="inline field">
+              <label class="ui black label">Username</label>
+              <input type="text" name="Username" placeholder="Username">
+              <label class="ui black label">Password </label>
+              <input type="password" name="Password" placeholder="Minimum 8 characters">&nbsp;&nbsp;
+              <button class="ui primary button" id="submit_btn" class="labeled icon button" type="submit" tabindex="0"><i class="sign in icon"></i>
+              Login</button>
+              </div>
+              </form>
+              <script>
+              $('.ui.form.bro')
+         .form({
+           fields: {
+             Username     : 'empty',
+             Password : ['minLength[8]', 'empty']
+           }
+         })
+       ;
+              </script>
+       </div>
+     </header><br><br>
+      <main>
+       <body>
+         <div class="ui horizontal segments">
+         <div class="ui inverted black left floated segment"><br><br><br><br>
+            <div class="ui huge header">LOGIN TO SHARE, EXCHANGE OR FIND BOOKS OF YOUR CHOICE THAT ARE NEAREST TO YOUR LOCATION<br>
+              ENJOY SHARING AND READING!!!
+            </div>
+            <a href="info">More Info =></a>
+          </div>
+
+         <div class="ui inverted black right floated segment">
+           <div class="ui huge header">
+             CREATE A NEW ACCOUNT FOR FREE
+           </div>
+           <form class="ui form sis" action="/signup" method="post">
+           <label class="ui black label">Username</label>
+           <input type="text" name="Username"  placeholder="Minimum 6 characters">
+           <label class="ui black label">Full Name</label>
+           <input type="text" name="Fullname" placeholder="Full Name">
+           <label class="ui black label">Password (Minimum 8 characters)</label>
+           <input type="password" name="password"  placeholder="Minimum 8 characters">
+           <label class="ui black label">Contact No (Optional)</label>
+           <input type="number" name="Contactno" placeholder="Contact No (Optional)">
+           <label class="ui black label">Email</label>
+           <input type="email" name="Email" placeholder="Email">
+           <label class="ui black label">Location</label><br>
+           <div class="ui fluid search selection dropdown" id="location">
+         <input type="hidden" name="location" >
+         <i class="dropdown icon"></i>
+         <div class="default text">Select Location</div>
+         <div class="menu">
+           <div class="item" data-value="Andaman and Nicobar Islands">Andaman and Nicobar Islands </div>
+                      <div class="item" data-value="Andhra Pradesh">Andhra Pradesh</div>
+                      <div class="item" data-value="Arunachal Pradesh">Arunachal Pradesh</div>
+                      <div class="item" data-value="Assam">Assam</div>
+                      <div class="item" data-value="Bihar">Bihar</div>
+                      <div class="item" data-value="Chattisgarh">Chhattisgarh</div>
+                      <div class="item" data-value="Dadra and Nager Haveli">Dadra and Nagar Haveli </div>
+                      <div class="item" data-value="Daman and Diu">Daman and Diu</div>
+                      <div class="item" data-value="Delhi">Delhi </div>
+                      <div class="item" data-value="Goa">Goa</div>
+                      <div class="item" data-value="Gujarat">Gujarat</div>
+                      <div class="item" data-value="Haryana">Haryana</div>
+                      <div class="item" data-value="Himachal Pradesh">Himachal Pradesh</div>
+                      <div class="item" data-value="Jammu and Kashmir">Jammu and Kashmir</div>
+                      <div class="item" data-value="Jharkhand">Jharkhand</div>
+                      <div class="item" data-value="Karnataka">Karnataka</div>
+                      <div class="item" data-value="Kerala">Kerala</div>
+                      <div class="item" data-value="Lakshadweep">Lakshadweep</div>
+                      <div class="item" data-value="Madhya Pradesh">Madhya Pradesh</div>
+                      <div class="item" data-value="Maharashtra">Maharashtra</div>
+                      <div class="item" data-value="Manipur">Manipur</div>
+                      <div class="item" data-value="Meghalaya">Meghalaya</div>
+                      <div class="item" data-value="Mizoram">Mizoram</div>
+                      <div class="item" data-value="Nagaland">Nagaland</div>
+                      <div class="item" data-value="Odisha">Odisha</div>
+                      <div class="item" data-value="Puducherry">Puducherry</div>
+                      <div class="item" data-value="Punjab">Punjab</div>
+                      <div class="item" data-value="Rajasthan">Rajasthan</div>
+                      <div class="item" data-value="Sikkim">Sikkim</div>
+                      <div class="item" data-value="Tamil Nadu">Tamil Nadu</div>
+                      <div class="item" data-value="Telangana">Telangana</div>
+                      <div class="item" data-value="Tripura">Tripura</div>
+                      <div class="item" data-value="Uttar Pradesh">Uttar Pradesh</div>
+                      <div class="item" data-value="Uttarakhand">Uttarakhand</div>
+                      <div class="item" data-value="West Bengal">West Bengal</div>
+        </div>
+        </div>
+           <button class="ui primary button" class="labeled icon button" tabindex="0" id="submit1"><i class="sign in icon"></i>
+           Sign Up</button>
+           </form>
+           <script>
+           $('.ui.form.sis')
+      .form({
+        fields: {
+          Username     : ['minLength[6]', 'empty'],
+          Fullname     :['minLength[3]', 'empty'],
+          password : ['minLength[8]', 'empty'],
+          Email     :'empty',
+          location  :'empty'
+        }
+      })
+    ;
+           </script>
+         </div>
+         </div>
+       </body>
+       <script>
+       $('#location').dropdown();
+
+       </script>
+
+      </main>
+
+</html>

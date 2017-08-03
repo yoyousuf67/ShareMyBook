@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css">
+<link rel="stylesheet" href="/ui/style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js"></script>
+  <link class="jsbin" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+  <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
+<style>
+  article, aside, figure, footer, header, hgroup,
+  menu, nav, section { display: block; }
+</style>
+    <title>ShareMyBook</title>
+  </head>
+      <header>
+      <a href="/shareorget"><div class="ui inverted black left floated segment">
+      <div class="ui huge header">SHAREMYBOOK.COM</div>
+            <p id="date"></p>
+            <script>
+            document.getElementById("date").innerHTML = Date();
+            </script>
+      </div></a>
+      <div class="ui inverted black right floated segment">
+        <span>
+          <div class="ui inline dropdown">
+            <div class="text">
+              <img class="ui massive avatar image" src="/ui/dp.png">
+
+            </div>
+            <i class="dropdown icon"></i>
+            <div class="menu">
+              <div class="item" data-value="0"><a href="/profileinfo">View Profile</a></div>
+                         <div class="item" data-value="1"><a href="/logout">Logout</a></div>
+            </div>
+          </div>
+        </span>
+        <script>
+        $('.ui.dropdown')
+        .dropdown()
+        ;
+        </script>
+      </div>
+     </header><br><br>
+      <main>
+        <body>
+          <div class="ui two column grid">
+            <div class="column">
+        <div class="ui inverted black segment">
+          <div class="ui huge header">
+            BOOK DETAILS:
+          </div>
+          <form class="ui form" action="/uploadfile" method="post" enctype="multipart/form-data">
+          <label class="ui black label">Book Name</label><br>
+          <input class="ten wide field" type="text" name="Bookname" placeholder="Book Name"><br>
+          <label class="ui black label">Author</label><br>
+          <input class="ten wide field" type="text" name="Author" placeholder="Author"><br>
+          <label class="ui black label">Upload Front Cover of Your Book</label><br>
+      <input class="ten wide field" type='file' name="Bookcover" accept="image/*" onchange="readURL(this);"  /><br>
+          <img id="uploadimg" src="/ui/images.png" alt="your image" /><br>
+          <label class="ui black label">Book Type</label><br>
+          <div class="ui search selection dropdown ten wide field" id="Booktype">
+        <input type="hidden" name="Booktype" >
+        <i class="dropdown icon"></i>
+        <div class="default text">Book Type</div>
+        <div class="menu">
+          <div class="item" data-value="Paperback">Paperback </div>
+                     <div class="item" data-value="Hardcover">Hardcover</div>
+        </div>
+      </div><br>
+      <label class="ui black label">Language</label><br>
+      <div class="ui search selection dropdown ten wide field" id="Language">
+    <input type="hidden" name="Language" >
+    <i class="dropdown icon"></i>
+    <div class="default text">Book Language</div>
+    <div class="menu">
+      <div class="item" data-value="Assamese">Assamese </div>
+                 <div class="item" data-value="Bengali">Bengali</div>
+                 <div class="item" data-value="English">English</div>
+                 <div class="item" data-value="Gujarati">Gujarati</div>
+                 <div class="item" data-value="Hindi">Hindi</div>
+                 <div class="item" data-value="Kannada">Kannada</div>
+                 <div class="item" data-value="Marathi">Marathi</div>
+                 <div class="item" data-value="Odia">Odia</div>
+                 <div class="item" data-value="Tamil">Tamil</div>
+                 <div class="item" data-value="Telugu">Telugu</div>
+                 <div class="item" data-value="Urdu">Urdu</div>
+                 <div class="item" data-value="Other">Other</div>
+    </div>
+  </div><br>
+      <label class="ui black label">Select Category</label><br>
+        <div class="ui search selection dropdown ten wide field" id="Category">
+      <input type="hidden" name="Category" >
+      <i class="dropdown icon"></i>
+      <div class="default text">Category</div>
+      <div class="menu">
+        <div class="item" data-value="Education and Professional Books">Education and Professional Books</div>
+                   <div class="item" data-value="Fiction and Non-fiction">Fiction and Non-fiction</div>
+                   <div class="item" data-value="Philosophy">Philosophy</div>
+                   <div class="item" data-value="Families and Relationships">Families and Relationships</div>
+                   <div class="item" data-value="Spirituality">Spirituality</div>
+                   <div class="item" data-value="Reference Books">Reference Books</div>
+                   <div class="item" data-value="Self Help Books">Self Help Books</div>
+                   <div class="item" data-value="Other">Other</div>
+      </div>
+    </div><br>
+          <label class="ui black label">Description About the Book</label><br>
+          <textarea class="ten wide field" name="Desc" placeholder="Description"></textarea><br>
+          <label class="ui black label">Rate the Condition of Your Book</label><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="ui huge star rating" data-rating="3" data-max-rating="5">5</div>
+        <input type="hidden" id="Starrating" name="Starrating" value="3"/>
+        <br>
+          <br>
+          <button class="ui primary button" class="labeled icon button" tabindex="0"><i class="sign in icon"></i>
+          Submit</button>
+          </form>
+        </div>
+        </div>
+      </div>
+          </body>
+        <script>
+        $('#Booktype').dropdown();
+          $('#Language').dropdown();
+          $('#Category').dropdown();
+        $('.ui.rating')
+  .rating('setting', 'onRate', function(value) {
+    $('#Starrating').attr("value",value);
+  });
+$('#multi-select')
+  .dropdown()
+;
+        </script>
+         <script>
+          function readURL(input) {
+      if (input.files && input.files[0]) {
+          var reader = new FileReader();
+
+          reader.onload = function (e) {
+              $('#uploadimg')
+                  .attr('src', e.target.result)
+                  .width(200)
+                  .height(200);
+          };
+          if(input.files[0].size>153600)
+alert('file size should be less than 150 KB');
+          reader.readAsDataURL(input.files[0]);
+      }
+  }
+</script>
+<script>
+$('.ui.form')
+.form({
+fields: {
+Bookname     : 'empty',
+Author     :'empty',
+Bookcover     :'empty',
+Booktype  :'empty',
+Language  :'empty',
+Category  :'empty'
+}
+})
+;
+</script>
+      </main>
+
+</html>

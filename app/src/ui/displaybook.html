@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js"></script>
+  <link rel="stylesheet" href="/ui/style.css">
+  <style>
+  .noclass{
+  height: 100%;
+  width: 80px;
+}
+  </style>
+  </head>
+
+
+        <header>
+        <a href="/shareorget"><div class="ui inverted black left floated segment">
+        <div class="ui huge header">SHAREMYBOOK.COM</div>
+              <p id="date"></p>
+              <script>
+              document.getElementById("date").innerHTML = Date();
+              </script>
+        </div></a>
+        <div class="ui inverted black right floated segment">
+          <span>
+            <div class="ui inline dropdown">
+              <div class="text">
+                <img class="ui massive avatar image" src="/ui/dp.png">
+
+              </div>
+              <i class="dropdown icon"></i>
+              <div class="menu">
+                <div class="item" data-value="0"><a href="/profileinfo">View Profile</a></div>
+                           <div class="item" data-value="1"><a href="/logout">Logout</a></div>
+              </div>
+            </div>
+          </span>
+          <script>
+          $('.ui.dropdown')
+          .dropdown()
+          ;
+          </script>
+        </div>
+        <a href="/shareorget" style="margin-left:85%"><=Back</a>
+       </header><br><br>
+          <main>
+            <hr>
+<!--<div class="right menu">
+  <div class="ui right aligned category search item">
+    <div class="ui inverted black icon input">
+      <input class="prompt" type="text" placeholder="Search Books...">
+      <i class="search link icon"></i>
+    </div>
+    <div class="results"></div>
+  </div>
+</div>-->
+
+<br><br>
+<div class="ui grid">
+  <div class="three wide column">
+    <div class="ui inverted black segment">
+      <div class="large header">
+        Categories:
+      </div>
+    <div class="ui relaxed divided list">
+      <div class="item">
+        <i class="large tag middle aligned icon"></i>
+        <div class="content">
+          <a class="header" href="javascript:sortFunction('Education and Professional Books')">Education and Professional Books</a>
+        </div>
+      </div>
+      <div class="item">
+        <i class="large tag middle aligned icon"></i>
+        <div class="content">
+          <a class="header" href="javascript:sortFunction('Fiction and Non-fiction')">Fiction and Non-Fiction</a>
+        </div>
+      </div>
+      <div class="item">
+        <i class="large tag middle aligned icon"></i>
+        <div class="content">
+          <a class="header" href="javascript:sortFunction('Philosophy')">Philosophy</a>
+        </div>
+      </div>
+      <div class="item">
+        <i class="large tag middle aligned icon"></i>
+        <div class="content">
+          <a class="header" href="javascript:sortFunction('Families and Relationship')">Families and Relationship</a>
+        </div>
+      </div>
+      <div class="item">
+        <i class="large tag middle aligned icon"></i>
+        <div class="content">
+          <a class="header" href="javascript:sortFunction('Spirituality')">Spirituality</a>
+        </div>
+      </div>
+      <div class="item">
+        <i class="large tag middle aligned icon"></i>
+        <div class="content">
+          <a class="header" href="javascript:sortFunction('Reference Books')">Reference Books</a>
+        </div>
+      </div>
+      <div class="item">
+        <i class="large tag middle aligned icon"></i>
+        <div class="content">
+          <a class="header" href="javascript:sortFunction('Self Help Books')">Self Help Books</a>
+        </div>
+      </div>
+      <div class="item">
+        <i class="large tag middle aligned icon"></i>
+        <div class="content">
+          <a class="header" href="javascript:sortFunction('Other')">Other</a>
+        </div>
+      </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="thirteen wide column">
+    <div class="ui three column grid">
+    <div class="ui link cards" id="details">
+      <div class="ui card">
+        <div class="image" href="#">
+          <img src="/ui/dp.png">
+        </div>
+        <div class="content">
+          <div class="header">Unknown</div>
+          <div class="meta">
+            <span class="date">Unknown</span>
+          </div>
+          <div class="description">
+            Unknown,Unknown
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+  </div>
+
+</div>
+  </main>
+          <script>
+          $('.ui.dropdown')
+          .dropdown()
+          ;
+
+          </script>
+
+          <script type="text/javascript">
+function myFunction(myMessage) {
+  var request=new XMLHttpRequest();
+
+request.onreadystatechange=function(){
+  if(request.readyState==XMLHttpRequest.DONE){
+      if(request.status==200){
+           //alert('your msg'+myMessage);
+           window.open('/dispbookinfo',"_self");
+      }else if (request.status===403){alert('Forbidden Request');
+      }
+      else if(request.status===500){
+              alert('Not logged in/Something went wrong on server');
+
+          }else if(request.status===404){
+              alert('Invalid Credentials');
+          }
+      }
+  //not done ignore it
+};
+request.open('GET','/intro/'+myMessage,true);
+
+request.setRequestHeader('Content-type','application/json');
+request.send(JSON.stringify({Book_id: myMessage}));
+
+}
+</script>
+
+
+<script type="text/javascript">
+function sortFunction(myMessage) {
+var request5=new XMLHttpRequest();
+
+request5.onreadystatechange=function(){
+if(request5.readyState==XMLHttpRequest.DONE){
+if(request5.status==200){
+  var dbbad= request5.responseText;
+  console.log("db is"+dbbad);
+
+  var span=document.getElementById('details');
+  span.innerHTML=dbbad.toString();
+}else if (request5.status===403){alert('Forbidden Request');
+}
+else if(request5.status===500){
+    alert('Not logged in/Something went wrong on server');
+
+}else if(request5.status===404){
+    alert('Invalid Credentials');
+}
+}
+//not done ignore it
+};
+request5.open('GET','/sort/'+myMessage,true);
+
+request5.setRequestHeader('Content-type','application/json');
+request5.send(null);
+
+}
+</script>
+
+
+          <script>
+        $(document).ready(function() {
+ var request1=new XMLHttpRequest();
+request1.onreadystatechange=function(){
+if(request1.readyState==XMLHttpRequest.DONE){
+    if(request1.status==200){
+     var dbdetail= request1.responseText;
+     console.log(dbdetail);
+    var span=document.getElementById('details');
+  span.innerHTML=dbdetail.toString();
+
+
+    }
+    else if (request1.status===403){alert('Error detected');
+    }
+    else {
+            alert('Something went wrong on server');
+
+        }
+    }
+};
+    console.log('request sent');
+    request1.open('GET','/getimg',true);
+    request1.send(null);
+});
+          </script>
+</html>

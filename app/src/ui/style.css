@@ -1,0 +1,36 @@
+body {
+  background-image: url("backimg.jpg");
+  background-size: cover;
+  background-attachment:fixed;
+}
+
+main {
+width:100%;
+height:82%;
+}
+header{
+width:100%;
+height:18%;
+line-height:50px;
+}
+ .temp{
+
+            text-align: center;
+            display: table-cell;
+            vertical-align: middle;
+            padding-left: 15%;
+            padding-right:15%;
+}
+#screen2button1{
+  margin: 40%;
+  margin-top: 6%;
+  margin-bottom: auto;
+}
+#screen2button2{
+  margin: 40%;
+  margin-top: 6%;
+  margin-bottom: auto;
+}
+.thirteen.wide.column {
+  border-left: thick solid #ffffff;
+}
